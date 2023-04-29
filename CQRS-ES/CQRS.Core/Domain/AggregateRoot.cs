@@ -19,7 +19,7 @@ namespace CQRS.Core.Domain
             return _changes;
         }
 
-        public void MarkChangesAsCommited()
+        public void MarkChangesAsCommitted()
         {
             _changes.Clear();
         }
@@ -44,7 +44,7 @@ namespace CQRS.Core.Domain
             ApplyChanges(@event, true);
         }
 
-        public void ReplyEvents(IEnumerable<BaseEvent> events)
+        public void ReplayEvents(IEnumerable<BaseEvent> events)
         {
             foreach(var @event in events)
                 ApplyChanges(@event, false);
