@@ -8,6 +8,9 @@ Action<DbContextOptionsBuilder> configureDbContext = o => o.UseLazyLoadingProxie
 builder.Services.AddDbContext<ApplicationDbContext>(configureDbContext);
 builder.Services.AddSingleton<DatabaseContextFactory>(new DatabaseContextFactory(configureDbContext));
 
+// create database and tables
+var dataContext = builder.Services.BuildServiceProvider().GetRequiredService<ApplicationDbContext>();
+dataContext.Database.EnsureCreated();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
